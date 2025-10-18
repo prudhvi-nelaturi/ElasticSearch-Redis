@@ -103,11 +103,3 @@ Contributing / Next steps
 - Add more robust example data and integration tests that run against a test Elasticsearch container (Testcontainers).
 - Add README sections for environment-specific configuration if you plan to deploy to cloud or Kubernetes.
 
-License
-
-This repository does not contain an explicit license. Add a LICENSE file if you intend to open-source the project.
-
-Contact
-
-If you want more help updating docs, adding examples, or wiring Testcontainers integration, tell me what you'd like
-next.
