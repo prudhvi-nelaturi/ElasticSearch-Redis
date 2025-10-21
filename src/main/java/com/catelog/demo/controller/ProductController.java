@@ -15,7 +15,7 @@ public class ProductController {
     private ProductService service;
 
     @GetMapping("/hello")
-    public String hello(){
+    public String hello() {
         return "Hello World!";
     }
 
@@ -28,4 +28,10 @@ public class ProductController {
     public List<ProductDocument> search(@RequestParam String q) {
         return service.searchProducts(q);
     }
+
+    @GetMapping("/{id}")
+    public Product getProductById(@PathVariable Long id) {
+        return service.getProductById(id);
+    }
+
 }

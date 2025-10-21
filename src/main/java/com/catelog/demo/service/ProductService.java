@@ -5,6 +5,7 @@ import com.catelog.demo.entity.ProductDocument;
 import com.catelog.demo.repository.ProductRepository;
 import com.catelog.demo.repository.ProductSearchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,6 +26,20 @@ public class ProductService {
 
     public List<ProductDocument> searchProducts(String keyword) {
         return searchRepository.findByNameContaining(keyword);
+    }
+
+    @Cacheable(value = "products", key = "#id")
+    public Product getProductById(Long id) {
+        simulateSlowService();
+        return productRepository.findById(id).orElse(null);
+    }
+
+    private void simulateSlowService() {
+        try {
+            Thread.sleep(3000L);
+        } catch (InterruptedException e) {
+            throw new IllegalStateException(e);
+        }
     }
 }
 
